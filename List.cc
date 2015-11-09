@@ -2,7 +2,7 @@
 #include <list>
 using namespace std;
 
-class List: Container(){
+class ListContainer : public Container(){
     public:
         int at(int);
         void swap(int, int);
@@ -16,7 +16,7 @@ class List: Container(){
         SortAlgorithm* listSP;
 };
 
-int List::at( int i){
+int ListContainer::at( int i){
     if(i > l.size() -1){
         return -1;
     }
@@ -29,7 +29,7 @@ int List::at( int i){
     return *k;
 
 }
-void List::swap(int i, int j){
+void ListContainer::swap(int i, int j){
      list<int>::iterator k = l.begin();
      list<int>::iterator j = l.begin();
 
@@ -50,19 +50,19 @@ void List::swap(int i, int j){
 
      return;
 }
-void List::insert(int i){
+void ListContainer::insert(int i){
     l.push_back(i);
     
     return;
 }
-void List::print((){
+void ListContainer::print((){
     cout<<"The list contains: ";
     for(list<int>::iterator i = l.begin(); i != l.end(); i++){
         cout<<" "<< *i;
     }
     cout<<endl;
 }
-int List::size(){
+int ListContainer::size(){
     print();
     return l.size();
 
