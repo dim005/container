@@ -1,11 +1,11 @@
 #include "sortAlg.h"
 
-class SelectionSort::sortAlg() {
+class SelectionSortAlgorithm::SortAlgorithm() {
     public:
         void sort(Container *);
 };
 
-void sortAlg::sort (Container *c) {
+void SelectionSortAlgorithm::sort (Container *c) {
     int min;
     int i, j, k;
     
