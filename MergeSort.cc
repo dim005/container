@@ -6,7 +6,7 @@ class MergeSortAlgorithm::SortAlgorithm() {
         void merge (Container*, Container*);
 };
 
-void MergeSortAlgorithm::merge (Container* left, Container* right) {
+Container MergeSortAlgorithm::merge (Container* left, Container* right) {
     Container result; 
     
     while (left.size() > 0 || right.size() > 0) {
@@ -37,13 +37,6 @@ void MergeSortAlgorithm::merge (Container* left, Container* right) {
 void MergeSortAlgorithm::sort(Container* c) {
     if (c.size() <= 1)
         return c;   
-
-    int i, j, k;
-    auto itB = c.begin();
-    auto itE = c.end(); 
-    
-    for (itB; itB != itE; itB++) 
-        k++;
      
     int middle = (c.size()+1)/2;
     
