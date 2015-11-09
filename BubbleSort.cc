@@ -1,6 +1,6 @@
 #include "sortAlg.h"
 
-class BubbleSort: sortAlg(){
+class BubbleSort: public SortAlgorithm(){
     public:
        void  sort( Container *);
 };
