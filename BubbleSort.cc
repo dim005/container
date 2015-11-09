@@ -1,13 +1,13 @@
 #include "sortAlg.h"
 
-class BubbleSort: sortAlg(){
+class BubbleSortAlgorithm: public SortAlgorithm(){
     public:
        void  sort( Container *);
 };
 
 
 
-void BubblseSort::sort(Container *c){
+void BubblseSortAlgoritm::sort(Container *c){
     for(int i = 0; i < c.size(); i++){
         for(int j = 0; j < c.size() -1; j++){
             if(c.at(j)>c.at(j+1)){
