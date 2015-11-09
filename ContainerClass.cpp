@@ -9,9 +9,10 @@
 #include <vector>
 #include "MergeSort.cc"
 #include "SelectionSort.cc"
+#include "BubbleSort.cc"
 #include "List.cc"
 #include "sortAlg.h"
-
+#include "main.cpp"
 
 using namespace std;
 
