@@ -1,8 +1,8 @@
-#include "Container.h"
+#include "ContainerClass.h"
 #include <list>
 using namespace std;
 
-class ListContainer : public Container(){
+class ListContainer: public Container(){
     public:
         int at(int);
         void swap(int, int);
@@ -67,10 +67,10 @@ int ListContainer::size(){
     return l.size();
 
 }
-void set_sort(SortAlgorithm *s){
+void ListContainer::set_sort(SortAlgorithm *s){
     listSP = s;
     return;
 }
-void sort(){
+void ListContainer:: sort(){
     listSP.sort();
 }
