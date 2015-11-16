@@ -18,6 +18,7 @@ public:
    virtual int size() = 0;
    virtual void set_sort(SortAlgorithm* s) = 0;
    virtual void sort() = 0;
+   virtual void erase() = 0; // erases first element in Container
 };
 #endif
 
@@ -34,8 +35,9 @@ public:
 #define VECTORCONTAINER_H
 class VectorContainer : public Container {
 public:
-   VectorContainer() : Container() {}
-   ~VectorContainer() {}
+//   VectorContainer() : Container() {}
+//   ~VectorContainer() {}
+//   VectorContainer(const VectorContainer &rhs);
    virtual int & at(int i) { return m_vecInts.at(i); }
    virtual void swap(int i, int j);
    virtual void insert(int element) { m_vecInts.push_back(element); }
@@ -43,15 +45,30 @@ public:
    virtual int size() { return m_vecInts.size(); }
    virtual void set_sort(SortAlgorithm* s) { vecSP = s; }
    virtual void sort() { vecSP->sort(this); }
+   virtual void erase();
 private:
    vector<int> m_vecInts;
    SortAlgorithm* vecSP;
 };
+/*
+VectorContainer::VectorContainer( const VectorContainer &rhs)
+{
+   for (int i = 0; i < rhs.size(); i++)
+   {
+      insert((*rhs).at(i));
+   }
+}
+*/
+void VectorContainer::erase()
+{
+   vector<int>::iterator i = m_vecInts.begin();
+   m_vecInts.erase(i);
+}
 
 void VectorContainer::swap(int i, int j)
 {
-   int temp = i;
-   m_vecInts.at(i) = j;
+   int temp = m_vecInts.at(i);
+   m_vecInts.at(i) = m_vecInts.at(j);
    m_vecInts.at(j) = temp;
 }
 
@@ -59,8 +76,9 @@ void VectorContainer::print()
 {
    for (int i = 0; i < m_vecInts.size(); i++)
    {
-      cout << m_vecInts.at(i) << endl;
+      cout << m_vecInts.at(i) << " ";
    }
+   cout << endl;
 }
 #endif
 
@@ -68,6 +86,9 @@ void VectorContainer::print()
 #define LISTCONTAINER_H
 class ListContainer: public Container{
     public:
+//        ListContainer() {}
+//        ~ListContainer() {}
+//        ListContainer(const ListContainer &rhs);
         int & at(int);
         void swap(int, int);
         void insert(int );
@@ -75,10 +96,20 @@ class ListContainer: public Container{
         int size();
         void set_sort(SortAlgorithm *);
         void sort();
+        void erase();
     private:
         list<int> l;
         SortAlgorithm* listSP;
 };
+/*
+ListContainer::ListContainer( const ListContainer &rhs)
+{
+   for (int i = 0; i < rhs.size(); i++)
+   {
+      insert((*rhs).at(i));
+   }
+}
+*/
 
 int & ListContainer::at( int i){
 
@@ -124,7 +155,6 @@ void ListContainer::print(){
     cout<<endl;
 }
 int ListContainer::size(){
-    print();
     return l.size();
 
 }
@@ -135,5 +165,12 @@ void ListContainer::set_sort(SortAlgorithm *s){
 void ListContainer:: sort(){
     listSP->sort(this);
 }
+
+void ListContainer::erase()
+{
+   l.pop_front();
+   return; 
+}
+
 #endif
 
