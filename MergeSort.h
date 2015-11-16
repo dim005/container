@@ -40,38 +40,46 @@ class MergeSortAlgorithm : public SortAlgorithm {
 void MergeSortAlgorithm::sort(Container* c) {
     if (c->size() <= 1)
         return;   
-     
-    int middle = (c->size()+1)/2;
     
+    int middle = (c->size()+1)/2;
+
     Container* left,* right;
 
-    for (int i = 0; i < middle; i++)
+    for (int i = 0; i < middle; i++) {
         left->insert(c->at(i));
+    }         
 
-    for (int i = middle; i < c->size(); i++)
+    for (int i = middle; i < c->size(); i++) {
         right->insert(c->at(i));
-    int j =0;
-    while (left->size() > j || right->size() > j) {
-        if (left->size() > j && right->size() > j) {
+    }
+    int c_original_size = c.size();
+    int j = 0;
+    while (left->size() > 0 || right->size() > 0) {
+        if (left->size() > 0 && right->size() > 0) {
             if (left->at(j) <= right->at(j)) {
-                c->insert(left->at(j));
-                j++;  
+                c->insert(left->at(0));
+                left->erase();  
             }
             else {
-                c->insert(right->at(j));
-                j++;
+                c->insert(right->at(0));
+                right->erase();
             }
             if (left->size() > 0 ) {
-                for (int i = 0; i < left->size(); i++)
+                for (int i = 0; i < left->size(); i++) {
                     c->insert(left->at(i));
+                }
                 break;
             }
             else if (right->size() > 0 ) {
-                for (int i = 0; i < right->size(); i++)
+                for (int i = 0; i < right->size(); i++) {
                     c->insert(right->at(i));
+                }
                 break;
             }
         } 
+    }
+    while(c.size() != c_original_size) {
+        c.erase();
     }
 }
 #endif
